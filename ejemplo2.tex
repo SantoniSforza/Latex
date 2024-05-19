@@ -1,0 +1,151 @@
+\documentclass[a4paper]{article} % Formato de plantilla que vamos a utilizar
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[margin=2cm, top=2cm, includefoot]{geometry}
+\usepackage{graphicx} % Para insertar imagenes 
+\usepackage[table,xcdraw]{xcolor} % Para la deteccion de colores
+\usepackage[most]{tcolorbox} % Para la insercion de cuadros en la portada
+\usepackage{fancyhdr} % Para los estilos
+\usepackage[hidelinks]{hyperref} % Gestion de hypervinculos
+\usepackage{listings} % insertar codigo en el documento
+\usepackage{parskip} % Arreglo de la sangria en el documento
+\usepackage[figurename=Figura]{caption} % Cambiar el nombre del caption de las fotos
+\usepackage{smartdiagram} % Insertar Diagramas
+\usepackage{zed-csp} % Insercion de tablas
+
+\usepackage[style=apa, backend=biber]{biblatex}
+\addbibresource{bibliotecas.bib} % Reemplaza con el nombre real de tu archivo .bib
+
+
+\geometry{a4paper, margin=1in}
+
+\begin{document}
+
+\cfoot{\thepage} % Numeros de pagina
+\clearpage
+    \tableofcontents
+    \clearpage
+
+\section{Proceso básico de arranque}
+
+Para iniciar un sistema operativo, se debe configurar un gestor de arranque. El gestor de arranque carga el kernel y el disco ram inicial antes de iniciar el proceso de arranque. 
+
+\begin{enumerate}
+\item Primero se inicia un firmware es el primer programa que se ejecuta recien se inicia el sistema operativo. Este se almacena en una memoria flash en la placa base o en un sistema de almacenamiento independiente.
+\item Comienza una inicialización del sistema, una vez encendido el sistema se ejecuta la autoprueba de encendido (POST). Después del POST, la BIOS inicializa el hardware requerido para el inicio(disco, controladores de teclado, etc.). BIOS inicia los primeros 440 bytes (el área del código de arranque del MBR) del primer disco según el orden de la BIOS. La primera etapa del cargador de arranque en el código de arranque del MBR, luego inicia el código de su segunda etapa (si existe) desde:
+
+\begin{enumerate}
+    \item sectores de discos siguientes tras el MBR, por ejemplo la denominada brecha posterior al MBR (solo en la tabla de particiones MBR).
+    \item un disco de partición o un disco sin partición volume boot record (VBR).
+    \item la partición de inicio de BIOS (GRUB solo en BIOS/GPT).
+\end{enumerate}
+
+\item Se inicia un gestor de arranque que es iniciado por el firmware. Éste es responsable de cargar el kernel con los parámetros del kernel y disco RAM inicial según los archivos de configuración.
+\item El kernel interactúa entre el hardware de la máquina y los programas que utilizan los recursos del hardware para funcionar. El kernel detiene temporalmente los programas para ejecutar otros programas, lo que se conoce como multitarea apropiativa.
+\item Después de que el gestor de arranque cargue el kernel y los posibles archivos initramfs y ejecute el kernel, el kernel desempaqueta los archivos initramfs (sistema de archivos RAM inicial) en los (entonces vacíos) rootfs (sistema de archivos raíz inicial, específicamente un ramfs o tmpfs). El primer initramfs extraído es el que está incrustado en el binario del kernel durante la compilación del mismo, luego se extraen los posibles archivos initramfs externos. 
+\item Proceso init. En la etapa final del espacio de usuario inicial, la verdadera raíz se monta y luego reemplaza el sistema de archivos raíz inicial. Se ejecuta /sbin/init, reemplazando el proceso /init. 
+\item Getty, init llama a getty una vez por cada terminal virtual (típicamente seis de ellos), lo que inicializa cada tty y solicita un nombre de usuario y una contraseña. Una vez que se proporcionan el nombre de usuario y la contraseña, getty los compara con /etc/passwd y /etc/shadow, luego llama al inicio de sesión. Alternativamente, getty puede iniciar un gestor de pantalla si hay uno presente en el sistema. Se puede configurar un gestor de pantalla para reemplazar el indicador de inicio de sesión getty en un tty.
+\item Inicio de sesión. El programa login inicia una sesión para el usuario configurando variables de entorno e iniciando el intérprete de órdenes del usuario, basado en /etc/passwd.
+\item Intérprete de órdenes. Una vez que el intérprete de órdenes del usuario se inicia, normalmente ejecutará un archivo de configuración, como bashrc, antes de presentar el indicador del intérprete de órdenes al usuario.
+
+\end{enumerate}
+\cite{nombreSitioWeb}
+
+\vfill
+
+\section{Componentes de un sistema operativo}
+\par
+\begin{itemize}
+    
+    \item\textbf{Kernel:} El componente principal del sistema operativo que gestiona los recursos del sistema, como la CPU, la memoria y los dispositivos de E/S. Se encarga de tareas como la programación de procesos, la gestión de la memoria, la gestión del sistema de archivos y el control de dispositivos.
+    \item\textbf{File system:} Gestiona la organización, el almacenamiento y la recuperación de datos en los dispositivos de almacenamiento. Proporciona una estructura jerárquica para organizar archivos y directorios.
+    \item\textbf{Device drivers:} Componentes de software que permiten al sistema operativo comunicarse y controlar dispositivos de hardware como impresoras, teclados y unidades de disco.
+    \item\textbf{User Interface:} Permite a los usuarios interactuar con el ordenador. Hay dos tipos principales:
+        \begin{enumerate}
+            \item\textbf{Command-Line Interface (CLI):} Los usuarios interactúan con el sistema escribiendo comandos de texto.
+            \item\textbf{Graphical User Interface (GUI):} Los usuarios interactúan con el sistema a través de elementos gráficos como ventanas, iconos, botones y menús.
+        \end{enumerate}
+    \item\textbf{Process Management:} Implica crear, programar y finalizar procesos. El sistema operativo garantiza que cada proceso obtenga su parte justa del tiempo de la CPU.
+    \item\textbf{Memory Management:} Asigna y desasigna espacio de memoria para los procesos. Incluye tareas como la gestión de la memoria virtual, la paginación y la protección de la memoria.
+    \item\textbf{File Management:} Gestiona archivos en dispositivos de almacenamiento, incluida la creación, eliminación, lectura y escritura de archivos. El sistema de archivos organiza los datos de una manera estructurada.
+    \item\textbf{Security and Access Control:} Implementa medidas para proteger el sistema y sus recursos del acceso no autorizado. Esto incluye la autenticación del usuario, los permisos de archivo y el cifrado.
+    \item\textbf{Networking:} Proporciona capacidades de red para permitir la comunicación entre ordenadores. Incluye protocolos, controladores de dispositivos y componentes de la pila de red.
+    \item\textbf{I/O System Management:} Maneja las operaciones de entrada y salida, gestionando la comunicación entre el ordenador y los dispositivos externos como teclados, pantallas, impresoras y dispositivos de almacenamiento.
+    \item\textbf{Utilities:} Herramientas y aplicaciones de software adicionales que ayudan en la gestión del sistema, la solución de problemas y la supervisión del rendimiento. Los ejemplos incluyen utilidades de disco, monitores de sistema y editores de texto.
+\end{itemize}
+
+\newpage
+
+\section{Funciones de un sistema operativo}
+
+\subsection{Gestión de procesos}
+
+La gestión de procesos es una función fundamental. El núcleo, en el corazón del sistema operativo, programa hábilmente los procesos, asigna los recursos del sistema y facilita la comunicación perfecta entre procesos. 
+
+\subsection{Gestión de la memoria}
+
+El sistema operativo maneja dinámicamente la memoria, empleando sofisticadas técnicas de gestión de la memoria virtual para aprovechar al máximo la RAM y el almacenamiento disponibles.
+
+\subsection{Gestión del sistema de archivos}
+
+El sistema de archivos, intrincadamente estructurado, está respaldado por sólidos mecanismos de gestión. La organización de archivos jerárquicos permite a los usuarios crear, eliminar y manipular datos con precisión.
+
+\subsection{Gestión de dispositivos}
+
+Los dispositivos de hardware se integran perfectamente a través de una gestión meticulosa de dispositivos. Los controladores de dispositivos, manipulados por el núcleo, facilitan interacciones con los periféricos. Los módulos del Kernel son componentes clave, lo que garantiza una funcionalidad óptima del dispositivo.
+
+\subsection{Interfaz de usuario}
+
+Los sistemas operativos atienden a diversas preferencias de los usuarios con interfaces versátiles. El aficionado a la línea de comandos puede aprovechar la potencia del terminal, mientras que aquellos que prefieren una experiencia gráfica pueden navegar a través de entornos de escritorio como Xfce o KDE Plasma.
+
+\subsection{Seguridad y control de acceso}
+
+Las medidas robustas, que abarcan la autenticación del usuario, los permisos de archivo y el cifrado, fortalecen el sistema contra el acceso no autorizado.
+
+\subsection{Redes}
+
+El sistema operativo gestiona de manera eficiente las conexiones de red, fomentando la comunicación entre sistemas.
+
+\subsection{Gestión del sistema de E/S}
+
+El sistema operativo gestiona hábilmente la comunicación entre el ordenador y los dispositivos externos, asegurando interacciones fluidas con los periféricos.
+
+\subsection{Manejo de errores}
+
+El sistema operativo detecta y gestiona los errores con gracia, lo que mitiga las posibles interrupciones del sistema. Los usuarios pueden consultar los registros del sistema y emplear utilidades de solución de problemas para abordar los problemas de forma proactiva.
+
+\subsection{Interfaz del sistema}
+
+La interfaz de llamada al sistema une las aplicaciones a nivel de usuario con el núcleo. El sistema operativo proporciona una interfaz optimizada para que las aplicaciones accedan a las funcionalidades del núcleo, lo que permite una integración perfecta y una optimización del rendimiento.
+
+\subsection{Gestión del disco duro}
+
+El sistema operativo proporciona herramientas robustas para la gestión del disco duro, asegurando la utilización y el mantenimiento eficientes de los recursos de almacenamiento. Las utilidades y partes permiten a los usuarios crear, modificar y eliminar particiones en discos duros.
+
+\subsection{Inicialización del sistema}
+
+Iniciar y gestionar los procesos de inicio del sistema es fundamental. El sistema de inicio ocupa un lugar central en el proceso de arranque, inicializando los servicios y manteniendo los estados del sistema.
+
+\subsection{Gestión de energía}
+
+La gestión eficiente de la energía es una prioridad, especialmente para los usuarios de portátiles. Estas herramientas ayudan a optimizar el consumo de energía, extender la vida útil de la batería y garantizar un equilibrio entre el rendimiento y la eficiencia energética.
+
+\subsection{Copia de seguridad y restauración}
+
+La integridad de los datos y la resiliencia del sistema son primordiales. Los usuarios pueden emplear utilidades para crear copias de seguridad, lo que garantiza la preservación de los datos críticos. Los usuarios pueden implementar estrategias efectivas de copia de seguridad y restauración.
+
+\subsection{Configuración de la hora y la fecha}
+
+El cronometraje preciso es vital para las operaciones del sistema y la sincronización. Los usuarios pueden configurar el reloj del sistema, lo que garantiza una configuración precisa de la hora y la fecha.
+
+\cite{sistemaOperativoWiki}
+% \bibliographystyle{plain}
+% \bibliography{bibliotecas}
+
+\newpage
+\printbibliography
+
+
+\end{document}
+

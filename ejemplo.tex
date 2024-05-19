@@ -1,0 +1,244 @@
+\documentclass[a4paper]{article} % Formato de plantilla que vamos a utilizar
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[margin=2cm, top=2cm, includefoot]{geometry}
+\usepackage{graphicx} % Para insertar imagenes 
+\usepackage[table,xcdraw]{xcolor} % Para la deteccion de colores
+\usepackage[most]{tcolorbox} % Para la insercion de cuadros en la portada
+\usepackage{fancyhdr} % Para los estilos
+\usepackage[hidelinks]{hyperref} % Gestion de hypervinculos
+\usepackage{listings} % insertar codigo en el documento
+\usepackage{parskip} % Arreglo de la sangria en el documento
+\usepackage[figurename=Figura]{caption} % Cambiar el nombre del caption de las fotos
+\usepackage{smartdiagram} % Insertar Diagramas
+\usepackage{zed-csp} % Insercion de tablas
+
+\usepackage{fontspec} 
+\setmainfont{Arial}
+
+
+% Declaracion de colores
+\definecolor{greenPortada}{HTML}{69A84F}
+
+% Declaracion de variables
+\newcommand{\logo}{~/null/2021-11-07-213216_635x221_scrot.png}
+\newcommand{\machineName}{no tengo nada que hacer}
+\newcommand{\logoMachine}{~/null/pexels-tima-miroshnichenko-5380664.jpg}
+\newcommand{\startDate}{08 de noviembre del 2021}
+
+% Adicionales
+% \addto\captionsspanish{\renewcommand{\contentsname}{Indice}} % Cambio del formato a ESP
+\setlength{\headheight}{20.2pt} % size de la barrita que aparece
+% \setlength{\headheight}{40.2pt}
+\pagestyle{fancy}
+\fancyhf{}
+
+% \lhead{\includegraphics[width=4cm]{\logo}} % para poner el logo en las cabezera
+\lhead{\normalfont { }}
+% \lhead{\rmfamily { }}
+% \lhead{\sffamily { }}
+% \lhead{\tffamily { }}
+% \lhead{\mdseries { }}
+% \lhead{\bfseries{ }}
+% \lhead{\upshape { }}
+% \lhead{\itshape { }}
+% \lhead{\scshape { }}
+\rhead{\slshape {Informatica Administrativa}}
+% \rhead{\includegraphics[height=0.5cm]{\logoMachine}}
+\renewcommand{\headrulewidth}{1pt} % Redefinimos la anchura de la barra superior
+\renewcommand{\headrule}{\hbox to\headwidth{\color{greenPortada}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\lstlistingname}{Codigo} % Para cambiar el caption de los codigos
+
+% Insertar codigo
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+% Inicializamos el documento
+\begin{document}
+    % --------------------------------------------------------
+    \cfoot{\thepage} % Numeros de pagina
+    % --------------------------------------------------------
+    % Portada
+    \begin{titlepage}
+    \centering
+
+    % --------------------------------------------------------
+    \includegraphics[width=0.9\textwidth]{\logo}\par\vspace{1cm}
+    {\scshape\LARGE \textbf{Informe}\par}
+    % --------------------------------------------------------
+    \vspace{0.3cm}
+    % --------------------------------------------------------
+    {\Huge\bfseries\textcolor{greenPortada}{Ayuda \machineName}\par}
+    \vfill % Rellena los espacios vacios en los documentos
+
+    % --------------------------------------------------------
+    \includegraphics[width=\textwidth,height=8cm,keepaspectratio]{\logoMachine}\par\vspace{1cm}
+    \vfill
+
+    % --------------------------------------------------------
+        \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+            \centering
+            mybx\\maquinita maquinita
+        \end{tcolorbox}
+        \vfill\vfill
+
+    % --------------------------------------------------------
+    {\large \startDate\par}
+    % \vfill
+
+    % --------------------------------------------------------
+    \end{titlepage}
+
+    % --------------------------------------------------------
+    % Comienzo del TOC
+    \clearpage
+    \tableofcontents
+    \clearpage
+    % --------------------------------------------------------
+    % Tabla de figuras
+    \clearpage
+    \listoffigures
+    \clearpage
+    % --------------------------------------------------------
+   \section{Antecedentes} 
+   El presente docummento recoge los resultados obtenidos duratne la fase de auditoria realizada 
+   a la maquina {\textbf\machineName} de la plataforma \href{https://caasimilas.com}{\textbf{\color{blue}Caasimilas}}.  
+
+    % --------------------------------------------------------
+   \vspace{0.2cm}
+   
+    % --------------------------------------------------------
+    \begin{figure}[h]
+    \centering
+        \includegraphics[width=\textwidth]{~/null/2021-11-07-121417_1366x768_scrot.png}
+        \caption{Detalles de la maquina}
+    \end{figure}
+
+    % --------------------------------------------------------
+    % --------------------------------------------------------
+    \begin{tcolorbox}[enhanced,attach boxed title to top center={yshift=-3mm,yshifttext=-1mm},
+      colback=blue!5!white,colframe=blue!75!black,colbacktitle=greenPortada!80!black,
+      title=Direccionamiento,fonttitle=\bfseries,
+      boxed title style={size=small,colframe=red!50!black} ]
+
+        \centering   
+        \href{https://caasimilas.com}{\color{blue}{https://caasimilas.com}}
+    \end{tcolorbox}
+
+    % --------------------------------------------------------
+    \vspace{0.1cm}
+
+    % --------------------------------------------------------
+   \clearpage
+
+    % --------------------------------------------------------
+   \section{Objetivos}
+    Conocer el estado de seguridad actual del servidor \textbf{\machineName}, enumerando posibles vectores de explotacion y determinando el alcance e impacto que un atacante podria ocasionar sobre el sistema en produccion
+    \subsection{Consideraciones}
+    Una vez finalizadas las jornadas de auditoria, se llevara a cabo una fase de saneamiento y buenas practicas con el objetivo de securizar el servidor y evitar ser victimas de un futuro ataque en base a los vectores explotados 
+
+    % --------------------------------------------------------
+    \vspace{0.5cm}
+    % --------------------------------------------------------
+    \begin{figure}[h]
+       \begin{center}
+           \smartdiagram[priority descriptive diagram]{
+               Reconocimiento sobre el sistema,
+               Deteccion de vulnerabilidades,
+               Explotacion de vulnerabilidades,
+               Securizacion del sistema
+           } 
+       \end{center} 
+    \caption{flujo de trabajo}
+    \end{figure}
+    % --------------------------------------------------------
+    \clearpage
+    % --------------------------------------------------------
+    \section{Analisis de vulnerabilidades}
+    \subsection{Reconocimiento inicial}
+    \vspace{0.2cm}
+   Se comenzo realizando un analisis inicial sobre el sistema, verificando que el sistema objetivo se encontrara accesible desde el segmento de red en el que se opera: 
+    % --------------------------------------------------------
+   \vspace{0.2cm}
+   \begin{figure}[h]
+      \begin{center}
+          \includegraphics[width=0.4\textwidth]{~/null/2021-11-08-155804_256x411_scrot.png}
+      \end{center} 
+       \caption{Mi master}
+   \end{figure}
+    % --------------------------------------------------------
+   \par
+    \vspace{0.2cm}
+    % --------------------------------------------------------
+    Una vez localizado, se realizo un escaneo a traves de la herramienta \textbf{nmap} para la deteccion de puertos abiertos, obteniendo los siguientes resultados:
+
+    % --------------------------------------------------------
+    \begin{figure}[h]
+       \begin{center}
+           \includegraphics[width=0.5\textwidth]{~/Sin nombre.png}
+       \end{center} 
+        \caption{Codigo}
+    \end{figure}
+    % --------------------------------------------------------
+    \clearpage
+    % --------------------------------------------------------
+    Asimismo, con el objetivo de determinar falsos positivos, se disenio un script en bash para enumerar posibles puertos adicionales para que la herramienta nmpa no llegara a detectar:
+
+    % --------------------------------------------------------
+    \vspace{0.2cm}
+    % --------------------------------------------------------
+
+    \begin{lstlisting}[language=python, caption=Script personalizado para la enumeracion de puertos]
+       for i in formato:
+            print(i)
+    \end{lstlisting}
+    % --------------------------------------------------------
+    \vspace{0.3cm}
+    % --------------------------------------------------------
+    A traves de este script, fue posible detectar puertos adicionalmente abiertos
+    % --------------------------------------------------------
+    \begin{schema}{TCP}
+       Puertos
+        \where
+        593, 1337
+    \end{schema}
+
+    % --------------------------------------------------------
+    Una vez finalizada la fase de enumeracion de puertos, se detectaron los servicion y versiones que corrian bajo estos,, representando a continuacion los mas significativos bajo los cuales fue posible explotar el sistema:
+    % --------------------------------------------------------
+    \begin{figure}[h]
+       \centering 
+        \makebox[\textwidth]{\includegraphics[width=0.9\paperwidth]{~/null/2021-11-08-182248_1366x768_scrot.png}}
+        \caption{Enumeracion de servicios y versiones}
+        \label{fig:servicesResults} % para poder referenciarla luego
+    \end{figure}
+
+    \vspace{0.2cm}
+
+    Tal y como se aprecio en la figura \ref{fig:servicesResults} de la pagina \pageref{fig:servicesResults}, es posible identificar que se trata de una maquina con \textbf{Directorio activo} configurado.  % forma de referenciar las figuras estando lejos de ellas y refenciar la pagina en que se encuentran
+
+\end{document}
